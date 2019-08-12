@@ -1,0 +1,26 @@
+<div class="cont d-flex justify-content-center align-items-center flex-column">
+
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" (change)="fileChangeEvent($event)">
+    <label class="custom-file-label">Choose file</label>
+  </div>
+
+  <div *ngIf="loading; else elseBlock">
+    <img src="./assets/loading.gif">
+  </div>
+
+  <ng-template #elseBlock>
+    <img [src]="imageSrc" #img *ngIf="imageSrc"/>
+  </ng-template>
+
+  <div>
+    <canvas id="canvas" width="600" height="399"></canvas>
+  </div>
+
+  <div class="list-group">
+    <div class="list-group-item" *ngFor="let detection of detections">
+      {{detection.class}} - {{detection.score}}
+    </div>
+  </div>
+
+</div>
